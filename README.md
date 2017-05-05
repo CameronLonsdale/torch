@@ -6,7 +6,7 @@ Command Line Cryptanalysis
 
 ```
 git clone git@github.com:CameronLonsdale/torch.git
-pip install torch
+pip install ./torch
 ```
 
 In the future this will change because I want to add auto complete scripts
@@ -14,7 +14,7 @@ In the future this will change because I want to add auto complete scripts
 ## Usage
 
 ```
-$ torch -h
+$ torch -h          
 Usage: torch [OPTIONS] COMMAND [ARGS]...
 
   Command-line Cryptanalysis.
@@ -22,11 +22,9 @@ Usage: torch [OPTIONS] COMMAND [ARGS]...
   Easily crack and decrypt classic ciphers from a terminal.
 
 Options:
-  -n INTEGER     The upper limit on the number of possible decryptions
-  to be
+  -n INTEGER     The upper limit on the number of possible decryptions to be
                  printed
-  -v, --verbose  Additionally print out the key and score for each
-  decryption
+  -v, --verbose  Additionally print out the key and score for each decryption
   -h, --help     Show this message and exit.
 
 Commands:
