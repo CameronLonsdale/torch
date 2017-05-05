@@ -6,22 +6,35 @@ from lantern import (
     analysis, modules, fitness
 )
 
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
-@click.group()
-@click.option('-n', default=1)
-@click.option('-v', '--verbose', is_flag=True)
+@click.group(context_settings=CONTEXT_SETTINGS)
+@click.option('-n', default=1, 
+    help="The upper limit on the number of possible decryptions to be printed")
+@click.option('-v', '--verbose', is_flag=True,
+    help="Additionally print out the key and score for each decryption")
 @click.pass_context
 def cli(ctx, n, verbose):
-    ciphertext = str(sys.stdin.read()).rstrip()
+    """
+    Command line Cryptanalysis.
+
+    Easily crack and decrypt classic ciphers from a terminal.
+    """
     ctx.obj = {
-        'CIPHERTEXT': ciphertext,
         'LIMIT': n,
-        'SPACE_OUTPUT': ciphertext.count('\n') > 1,
         'VERBOSE': verbose
     }
 
 
+def read_input(ctx):
+    """Read input from stdin"""
+    ciphertext = str(sys.stdin.read()).rstrip()
+    ctx.obj['SPACE_OUTPUT'] = ciphertext.count('\n') > 1
+    return ciphertext, ctx
+
+
 def output(decryptions, ctx):
+    """Output decryptions using ctx"""
     verbose = ctx.obj['VERBOSE']
 
     for decrypt in decryptions[:ctx.obj['LIMIT']]:
@@ -31,6 +44,7 @@ def output(decryptions, ctx):
 
 
 def format_output(decryption, verbose):
+    """Return the formatted output based on verbosity"""
     if verbose:
         return "{0}\nkey: {1}\nscore: {2}".format(
             decryption.plaintext, decryption.key, decryption.score
@@ -39,10 +53,12 @@ def format_output(decryption, verbose):
 
 
 @cli.command()
-@click.option('-k', '--key', default=None)
+@click.option('-k', '--key', default=None, type=int,
+    help="Use this key to decrypt")
 @click.pass_context
 def caesar(ctx, key):
-    ciphertext = ctx.obj['CIPHERTEXT']
+    """Decrypt or crack a caesar cipher"""
+    ciphertext, ctx = read_input(ctx)
     if key:
         click.echo(modules.caesar.decrypt(key, ciphertext))
     else:
@@ -53,11 +69,14 @@ def caesar(ctx, key):
 
 
 @cli.command()
-@click.option('-k', '--key', default=None)
-@click.option('--ntrials', default=15)
+@click.option('-k', '--key', default=None, type=str,
+    help="Use this key to decrypt")
+@click.option('--ntrials', default=15, type=int,
+    help="Number of trials to run the substitution cipher cracker with")
 @click.pass_context
 def substitution(ctx, key, ntrials):
-    ciphertext = ctx.obj['CIPHERTEXT']
+    """Decrypt or crack a simple substitution cipher"""
+    ciphertext, ctx = read_input(ctx)
     if key:
         click.echo(modules.simplesubstitution.decrypt(key, ciphertext))
     else:
@@ -70,8 +89,10 @@ def substitution(ctx, key, ntrials):
 @cli.command()
 @click.pass_context
 def vigenere(ctx):
+    """Decrypt or crack a vigenere cipher"""
+    ciphertext, ctx = read_input(ctx)
     decryptions = modules.vigenere.crack(
-        ctx.obj['CIPHERTEXT'],
+        ciphertext,
         fitness.ChiSquared(analysis.frequency.english.quadgrams),
         max_key_period=30
     )
