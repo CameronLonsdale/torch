@@ -16,7 +16,7 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.pass_context
 def cli(ctx, n, verbose):
     """
-    Command line Cryptanalysis.
+    Command-line Cryptanalysis.
 
     Easily crack and decrypt classic ciphers from a terminal.
     """

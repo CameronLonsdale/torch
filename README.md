@@ -17,7 +17,7 @@ In the future this will change because I want to add auto complete scripts
 $ torch -h         
 Usage: torch [OPTIONS] COMMAND [ARGS]...
 
-  Command line Cryptanalysis.
+  Command-line Cryptanalysis.
 
   Easily crack and decrypt classic ciphers from a terminal.
 
