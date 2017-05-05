@@ -1,15 +1,12 @@
 # torch
 
-Command Line Cryptanalysis
+Command-line Cryptanalysis
 
 ## Installation
 
 ```
-git clone git@github.com:CameronLonsdale/torch.git
-pip install ./torch
+pip install torch-crypto
 ```
-
-In the future this will change because I want to add auto complete scripts
 
 ## Usage
 
