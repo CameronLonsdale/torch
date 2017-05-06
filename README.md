@@ -10,7 +10,7 @@ pip install torch-crypto
 
 ## Usage
 
-```
+```shell
 $ torch -h          
 Usage: torch [OPTIONS] COMMAND [ARGS]...
 
@@ -32,7 +32,7 @@ Commands:
 
 ### Example - Krypton Level 3
 
-```
+```shell
 $ cat cipher  | torch -v substitution --ntrials 2
 INCRY PTOGR APHYA CAESA RCIPH ERALS OKNOW NASAC AESAR SCIPH ERTHE SHIFT
 CIPHE RCAES ARSCO DEORC AESAR SHIFT ISONE OFTHE SIMPL ESTAN DMOST WIDEL
