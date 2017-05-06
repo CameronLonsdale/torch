@@ -87,13 +87,20 @@ def substitution(ctx, key, ntrials):
 
 
 @cli.command()
+@click.option('-k', '--key', default=None, type=str,
+    help="Use this key to decrypt")
+@click.option('-p', '--period', default=None, type=str,
+    help="Use this key to decrypt")
 @click.pass_context
-def vigenere(ctx):
+def vigenere(ctx, key, period):
     """Decrypt or crack a vigenere cipher"""
     ciphertext, ctx = read_input(ctx)
-    decryptions = modules.vigenere.crack(
-        ciphertext,
-        fitness.ChiSquared(analysis.frequency.english.quadgrams),
-        max_key_period=30
-    )
-    output(decryptions, ctx)
+    if key:
+        click.echo(modules.vigenere.decrypt(key, ciphertext))
+    else:
+        decryptions = modules.vigenere.crack(
+            ciphertext,
+            fitness.ChiSquared(analysis.frequency.english.unigrams),
+            key_period=period
+        )
+        output(decryptions, ctx)
