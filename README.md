@@ -4,8 +4,14 @@ Command-line Cryptanalysis
 
 ## Installation
 
+Within a virtual environment:
 ```
 pip install torch-crypto
+```
+
+Globally:
+```
+sudo pip install torch-crypto
 ```
 
 ## Usage
