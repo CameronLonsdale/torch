@@ -6,12 +6,12 @@ Command-line Cryptanalysis
 
 Within a virtual environment:
 ```
-pip install torch-crypto
+pip install -U torch-crypto
 ```
 
 Globally:
 ```
-sudo pip install torch-crypto
+sudo pip install -U torch-crypto
 ```
 
 ## Usage
@@ -52,3 +52,8 @@ $ torch substitution -k QAZWSXEDCRFVTGBYHNUJMIKOLP
 KSVVW BGSJD SVSIS VXBMN YQUUK BNWCU ANMJS
 WELLD ONETH ELEVE LFOUR PASSW ORDIS BRUTE
 ```
+### Torch versus Krypton
+
+[OverTheWire Krypton Wargame](http://overthewire.org/wargames/krypton/)
+
+[![asciicast](https://asciinema.org/a/5J1NTPowvpPjyaKuoQkmLF4aB.png)](https://asciinema.org/a/5J1NTPowvpPjyaKuoQkmLF4aB)
