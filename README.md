@@ -6,12 +6,12 @@ Command-line Cryptanalysis
 
 Within a virtual environment:
 ```
-pip install -U torch-crypto
+pip3 install -U torch-crypto
 ```
 
 Globally:
 ```
-sudo pip install -U torch-crypto
+sudo pip3 install -U torch-crypto
 ```
 
 ## Usage
