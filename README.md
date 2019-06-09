@@ -31,7 +31,7 @@ Options:
   -h, --help     Show this message and exit.
 
 Commands:
-  caesar        Decrypt or crack a caesar cipher
+  shift         Decrypt or crack a shift cipher
   substitution  Decrypt or crack a simple substitution cipher
   vigenere      Decrypt or crack a vigenere cipher
 ```

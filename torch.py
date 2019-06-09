@@ -41,20 +41,20 @@ def output(decryptions, ctx):
 def format_output(decryption, verbose):
     """Return the formatted output based on verbosity"""
     if verbose:
-        return "{0}\nkey: {1}\nscore: {2}".format(decryption.plaintext, decryption.key, decryption.score)
-    return decryption.plaintext
+        return "{0}\nkey: {1}\nscore: {2}".format(''.join(decryption.plaintext), decryption.key, decryption.score)
+    return ''.join(decryption.plaintext)
 
 
 @cli.command()
 @click.option('-k', '--key', default=None, type=int, help="Use this key to decrypt")
 @click.pass_context
-def caesar(ctx, key):
-    """Decrypt or crack a caesar cipher"""
+def shift(ctx, key):
+    """Decrypt or crack a shift cipher"""
     ciphertext, ctx = read_input(ctx)
     if key:
-        return click.echo(modules.caesar.decrypt(key, ciphertext))
+        return click.echo(modules.shift.decrypt(key, ciphertext))
 
-    decryptions = modules.caesar.crack(
+    decryptions = modules.shift.crack(
         ciphertext,
         fitness.english.quadgrams
     )
